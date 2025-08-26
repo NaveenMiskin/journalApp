@@ -1,0 +1,55 @@
+spring:
+  profiles:
+    active: dev
+
+
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: ${JAVA_MAIL}
+    password: ${APP_PASSWORD / JAVA_MAIL_PASSWORD}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+logging:
+  com:
+    naveen:
+      journalApp: DEBUG
+
+
+weather:
+  api:
+    key: ${WEATHER_API}
+
+
+
+#weather_api_key: 5e3ab895c19e0bb925701de7ce30e34e
+
+  kafka:
+    bootstrap-servers: ${KAFKA_HOST}
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.support.serializer.JsonSerializer
+    consumer:
+      group-id: weekly-sentiment-group
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring:
+          json:
+            trusted:
+              packages: com.naveen.journalApp.model
+    properties:
+      security:
+        protocol: SASL SSL
+      sasl:
+        mechanism: PLAIN
+        jaas:
+          config: org.apache.kafka.common.security.plain. PlainLoginModule required username='xxx' password='xxxx';
+      session:
+        timeout:
+          ms: 45000

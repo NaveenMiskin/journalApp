@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: journal App
+  data:
+    mongodb:
+      uri: ${MONGODB_HOST}
+      database: journaldb
+      auto-index-creation: true
+
+  redis:
+    url: ${REDIS_HOST}
+
+server:
+  port: 8080
+  servlet:
+    context-path: /journal
