@@ -1,24 +1,21 @@
 package com.naveen.journalApp.Entity;
 
-import com.naveen.journalApp.enums.Sentiment;
-import lombok.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
 
-@Document(collection = "journal_Entry")
+@Document(collection = "config_journal_app")
 @Data
 @NoArgsConstructor
-public class JournalEntry {
+public class ConfigJournalAppEntity {
 
-    @Id
-    private ObjectId id;
-    @NonNull
-    private String name;
-    private String content;
+    private String key;
+    private String value;
     private LocalDateTime date;
-    private Sentiment sentiment;
 
 }

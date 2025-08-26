@@ -1,6 +1,7 @@
 package com.naveen.journalApp.Controller;
 
 import com.naveen.journalApp.Entity.User;
+import com.naveen.journalApp.cache.AppCache;
 import com.naveen.journalApp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,6 +17,9 @@ public class AdminController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private AppCache appCache;
+
     @GetMapping("/get-all-users")
     public ResponseEntity<?> getAllUsers(){
         List<User> all = userService.getAll();
@@ -30,4 +34,8 @@ public class AdminController {
         userService.saveAdmin(user);
     }
 
+    @GetMapping("clear-app-cache")
+    public void clearAppCache(){
+        appCache.init();
+    }
 }
